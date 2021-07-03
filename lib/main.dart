@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_website/background/background.dart';
@@ -41,6 +42,10 @@ class _AppState extends State<App> {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.blue[700],
+      systemNavigationBarColor: Colors.blue,
+    ));
     return MaterialApp(
       title: 'Nicolas Chichi',
       color: Colors.amberAccent,
@@ -73,7 +78,7 @@ class MainSection extends StatelessWidget {
                   smallSize,
                   AppLocalizations.of(context)!.name,
                   AppLocalizations.of(context)!.position,
-                )
+                ),
               ],
             ),
           )
@@ -92,7 +97,7 @@ Widget _titleText(String text, bool isSmallSize) {
         fontSize: isSmallSize ? 26 : 36,
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.normal,
-        color: Colors.white70,
+        color: Colors.white,
       ),
     ),
   );
