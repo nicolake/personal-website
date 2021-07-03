@@ -51,6 +51,7 @@ class MainApp extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        secondaryHeaderColor: Colors.blue[700],
       ),
       home: MainSection(),
     );
@@ -82,13 +83,13 @@ class MainSection extends StatelessWidget {
   }
 }
 
-Widget _titleText(String text) {
+Widget _titleText(String text, bool isSmallSize) {
   return Padding(
     padding: const EdgeInsets.all(5.0),
     child: Text(
       text,
       style: GoogleFonts.firaMono(
-        fontSize: 36,
+        fontSize: isSmallSize ? 26 : 36,
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.normal,
         color: Colors.white70,
@@ -97,12 +98,12 @@ Widget _titleText(String text) {
   );
 }
 
-Widget _mainTitleBlock(String title, String position) {
+Widget _mainTitleBlock(String title, String position, bool isSmallSize) {
   return Column(
     children: [
-      _titleText(title),
+      _titleText(title, isSmallSize),
       SizedBox(height: 5),
-      _titleText(position),
+      _titleText(position, isSmallSize),
     ],
   );
 }
@@ -119,7 +120,11 @@ Widget _header(bool isSmallSize, String name, String position) {
     SizedBox(
       width: 10.0,
     ),
-    _mainTitleBlock(name, position),
+    _mainTitleBlock(
+      name,
+      position,
+      isSmallSize,
+    ),
   ];
   return Container(
     margin: EdgeInsets.all(20),
