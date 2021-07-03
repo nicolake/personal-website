@@ -1,4 +1,5 @@
 {
-    "helloWorld": "Hola Mundo!",
-    "homePageTitle": "Nicolas Chichi - Ingeniero de Software"
+    "homePageTitle": "Nicolas Chichi - Ingeniero de Software",
+    "name": "Nicolas Chichi",
+    "position": "Ingeniero de Software"
 }

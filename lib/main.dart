@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:personal_website/background/background.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,14 +58,82 @@ class MainApp extends StatelessWidget {
 }
 
 class MainSection extends StatelessWidget {
-  const MainSection({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: Text(AppLocalizations.of(context)!.helloWorld),
+    var smallSize = MediaQuery.of(context).size.width < 700;
+    return Scaffold(
+      body: Stack(
+        children: [
+          Background(),
+          Center(
+            child: Column(
+              children: [
+                _header(
+                  smallSize,
+                  AppLocalizations.of(context)!.name,
+                  AppLocalizations.of(context)!.position,
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
+}
+
+Widget _titleText(String text) {
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Text(
+      text,
+      style: GoogleFonts.firaMono(
+        fontSize: 36,
+        fontWeight: FontWeight.w600,
+        fontStyle: FontStyle.normal,
+        color: Colors.white70,
+      ),
+    ),
+  );
+}
+
+Widget _mainTitleBlock(String title, String position) {
+  return Column(
+    children: [
+      _titleText(title),
+      SizedBox(height: 5),
+      _titleText(position),
+    ],
+  );
+}
+
+Widget _header(bool isSmallSize, String name, String position) {
+  List<Widget> widgets = [
+    Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: CircleAvatar(
+        radius: isSmallSize ? 60.0 : 80.0,
+        backgroundImage: AssetImage('assets/nico.jpg'),
+      ),
+    ),
+    SizedBox(
+      width: 10.0,
+    ),
+    _mainTitleBlock(name, position),
+  ];
+  return Container(
+    margin: EdgeInsets.all(20),
+    padding: EdgeInsets.all(5),
+    child: Card(
+      color: Colors.transparent,
+      child: isSmallSize
+          ? Column(
+              children: widgets,
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: widgets,
+            ),
+    ),
+  );
 }

@@ -1,7 +1,5 @@
 {
     "homePageTitle": "Nicolas Chichi - Software Engineer",
-    "helloWorld": "Hello World!",
-    "@helloWorld": {
-      "description": "The conventional newborn programmer greeting"
-    }
+    "name": "Nicolas Chichi",
+    "position": "Software Engineer"
 }

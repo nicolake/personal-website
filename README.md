@@ -1,3 +1,9 @@
-# my personal website
+# My personal website
 
-A new Flutter project.
+This is my personal website built with flutter and firebase.
+
+## Main features
+- [x] Internationalization
+- [x] Firebase Hosting
+- [] Firebase Database
+- [] Analytics
