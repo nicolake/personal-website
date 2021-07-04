@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:personal_website/background/background.dart';
@@ -42,18 +41,25 @@ class _AppState extends State<App> {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.blue[700],
-      systemNavigationBarColor: Colors.blue,
-    ));
     return MaterialApp(
       title: 'Nicolas Chichi',
-      color: Colors.amberAccent,
+      color: Colors.blue[700],
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context)!.homePageTitle,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale == null) return supportedLocales.first;
+
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode) {
+            return supportedLocale;
+          }
+        }
+
+        return supportedLocales.first;
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
         secondaryHeaderColor: Colors.blue[700],
@@ -66,7 +72,7 @@ class MainApp extends StatelessWidget {
 class MainSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var smallSize = MediaQuery.of(context).size.width < 700;
+    var smallSize = MediaQuery.of(context).size.width < 705;
     return Scaffold(
       body: Stack(
         children: [
@@ -94,7 +100,7 @@ Widget _titleText(String text, bool isSmallSize) {
     child: Text(
       text,
       style: GoogleFonts.firaMono(
-        fontSize: isSmallSize ? 26 : 36,
+        fontSize: isSmallSize ? 24 : 36,
         fontWeight: FontWeight.w600,
         fontStyle: FontStyle.normal,
         color: Colors.white,
@@ -118,7 +124,7 @@ Widget _header(bool isSmallSize, String name, String position) {
     Padding(
       padding: const EdgeInsets.all(5.0),
       child: CircleAvatar(
-        radius: isSmallSize ? 60.0 : 80.0,
+        radius: isSmallSize ? 50.0 : 80.0,
         backgroundImage: AssetImage('assets/nico.jpg'),
       ),
     ),
