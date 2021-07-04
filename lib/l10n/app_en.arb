@@ -1,5 +1,9 @@
 {
     "homePageTitle": "Nicolas Chichi - Software Engineer",
     "name": "Nicolas Chichi",
+    "githubTooltip": "Github Profile",
+    "linkedinTooltip": "LinkedIn Profile",
+    "stackoverflowTooltip": "StackOverflow Profile",
+    "codepenTooltip": "CodePen Profile",
     "position": "Software Engineer"
 }

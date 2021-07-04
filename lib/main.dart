@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:personal_website/background/background.dart';
+import 'package:personal_website/profile_link_icons_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,13 +71,30 @@ class MainApp extends StatelessWidget {
 }
 
 class MainSection extends StatelessWidget {
+  final String linkedinUrl =
+      'https://www.linkedin.com/in/nicolas-chichi-18601135/';
+  final String githubUrl = 'https://github.com/nicolake';
+  final String stackoverflowUrl =
+      'https://stackoverflow.com/users/6253192/nico';
+  final String codepenUrl = 'https://codepen.io/nicolake/';
   @override
   Widget build(BuildContext context) {
     var smallSize = MediaQuery.of(context).size.width < 705;
     return Scaffold(
       body: Stack(
         children: [
-          Background(),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue[600]!,
+                  Colors.deepOrange.shade200,
+                ],
+              ),
+            ),
+          ),
           Center(
             child: Column(
               children: [
@@ -85,6 +103,101 @@ class MainSection extends StatelessWidget {
                   AppLocalizations.of(context)!.name,
                   AppLocalizations.of(context)!.position,
                 ),
+                Expanded(
+                  child: SizedBox(),
+                ),
+                Card(
+                  color: Colors.transparent,
+                  margin: EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 20.0,
+                      ),
+                      IconButton(
+                        tooltip: AppLocalizations.of(context)!.linkedinTooltip,
+                        onPressed: () async {
+                          if (await canLaunch(linkedinUrl)) {
+                            await launch(
+                              linkedinUrl,
+                              forceSafariVC: true,
+                              forceWebView: true,
+                              webOnlyWindowName: '_blank',
+                            );
+                          } else {
+                            throw 'Could not launch $linkedinUrl';
+                          }
+                        },
+                        icon: const Icon(
+                          ProfileLinkIcons.linkedin,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: AppLocalizations.of(context)!.githubTooltip,
+                        onPressed: () async {
+                          if (await canLaunch(githubUrl)) {
+                            await launch(
+                              githubUrl,
+                              forceSafariVC: true,
+                              forceWebView: true,
+                              webOnlyWindowName: '_blank',
+                            );
+                          } else {
+                            throw 'Could not launch $githubUrl';
+                          }
+                        },
+                        icon: const Icon(
+                          ProfileLinkIcons.github,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: AppLocalizations.of(context)!.codepenTooltip,
+                        onPressed: () async {
+                          if (await canLaunch(codepenUrl)) {
+                            await launch(
+                              codepenUrl,
+                              forceSafariVC: true,
+                              forceWebView: true,
+                              webOnlyWindowName: '_blank',
+                            );
+                          } else {
+                            throw 'Could not launch $codepenUrl';
+                          }
+                        },
+                        icon: const Icon(
+                          ProfileLinkIcons.codepen,
+                          color: Colors.white,
+                        ),
+                      ),
+                      IconButton(
+                        tooltip:
+                            AppLocalizations.of(context)!.stackoverflowTooltip,
+                        onPressed: () async {
+                          if (await canLaunch(stackoverflowUrl)) {
+                            await launch(
+                              stackoverflowUrl,
+                              forceSafariVC: true,
+                              forceWebView: true,
+                              webOnlyWindowName: '_blank',
+                            );
+                          } else {
+                            throw 'Could not launch $stackoverflowUrl';
+                          }
+                        },
+                        icon: const Icon(
+                          ProfileLinkIcons.stackoverflow,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20.0,
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           )
