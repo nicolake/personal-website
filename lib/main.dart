@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -236,9 +237,20 @@ Widget _header(bool isSmallSize, String name, String position) {
   List<Widget> widgets = [
     Padding(
       padding: const EdgeInsets.all(5.0),
-      child: CircleAvatar(
-        radius: isSmallSize ? 50.0 : 80.0,
-        backgroundImage: AssetImage('assets/nico.jpg'),
+      child: AvatarGlow(
+        glowColor: Colors.yellow,
+        endRadius: isSmallSize ? 70.0 : 120.0,
+        duration: Duration(milliseconds: 2000),
+        repeat: false,
+        showTwoGlows: true,
+        child: Material(
+          elevation: 8.0,
+          shape: CircleBorder(),
+          child: CircleAvatar(
+            radius: isSmallSize ? 50.0 : 80.0,
+            backgroundImage: AssetImage('assets/nico.jpg'),
+          ),
+        ),
       ),
     ),
     SizedBox(

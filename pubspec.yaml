@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  avatar_glow: ^2.0.1
   firebase_analytics: ^8.1.2
   firebase_core: ^1.3.0
   google_fonts: ^2.1.0
@@ -29,6 +30,6 @@ flutter:
   assets:
     - assets/nico.jpg
   fonts:
-    - family:  ProfileLinkIcons
+    - family: ProfileLinkIcons
       fonts:
-       - asset: fonts/ProfileLinkIcons.ttf
+        - asset: fonts/ProfileLinkIcons.ttf
